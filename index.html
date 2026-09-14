@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iris Explorer</title>
+<meta name="description" content="Interaktívny prieskumník datasetu Iris – filtre, graf a tabuľka na jednej stránke.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <header class="app-header">
+    <h1>Iris Explorer</h1>
+    <p class="subtitle">Interaktívny prieskum datasetu Iris priamo v prehliadači</p>
+  </header>
+
+  <main id="app-main" class="app-frame" aria-busy="true">
+    <section class="row top-row">
+      <div class="panel info-panel">
+        <h2>Info panel</h2>
+        <ul class="info-list" id="info-list">
+          <li><span class="info-label">Vyfiltrovaných riadkov</span><span class="info-value" id="info-filtered">–</span></li>
+          <li><span class="info-label">Všetkých riadkov</span><span class="info-value" id="info-total">–</span></li>
+          <li><span class="info-label">Vybraných druhov</span><span class="info-value" id="info-species">–</span></li>
+        </ul>
+      </div>
+
+      <div class="panel graph-panel">
+        <h2>Filtered data as graph</h2>
+        <div class="chart-wrap">
+          <svg id="chart" viewBox="0 0 560 360" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Bodový graf dĺžky a šírky lupienka podľa druhu"></svg>
+          <div id="tooltip" class="tooltip" hidden></div>
+          <p id="chart-empty" class="empty-state" hidden>Žiadne dáta nezodpovedajú aktuálnym filtrom.</p>
+        </div>
+        <div class="legend" id="legend"></div>
+      </div>
+    </section>
+
+    <section class="panel sliders-panel">
+      <div class="sliders-head">
+        <h2>Filter Sliders</h2>
+        <button type="button" id="reset-filters" class="reset-btn">Reset filtrov</button>
+      </div>
+      <div class="slider-grid" id="sliders"></div>
+      <div class="species-filter" id="species-filter">
+        <span class="species-filter-label">Species</span>
+        <div class="species-options" id="species-options"></div>
+      </div>
+    </section>
+
+    <section class="panel table-panel">
+      <h2>Datatable (filtered data)</h2>
+      <div class="table-wrap">
+        <table id="data-table">
+          <thead>
+            <tr>
+              <th>Sepal length</th>
+              <th>Sepal width</th>
+              <th>Petal length</th>
+              <th>Petal width</th>
+              <th>Species</th>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <p id="load-error" class="load-error" hidden>
+    Dataset sa nepodarilo načítať. Skontrolujte internetové pripojenie a obnovte stránku.
+  </p>
+
+  <footer class="app-footer">
+    Zdroj dát:
+    <a href="https://raw.githubusercontent.com/uiuc-cse/data-fa14/gh-pages/data/iris.csv" target="_blank" rel="noopener">iris.csv</a>
+  </footer>
+</div>
+<script src="app.js" defer></script>
+</body>
+</html>
